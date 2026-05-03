@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="manifest" href="manifest.json" />
+    <script>
+      // Prevent FOUC for dark mode
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+      }
+    </script>
+    <title>Áreas de Mejora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="app-container details-container">
+      
+      <!-- Header -->
+      <header class="header details-header">
+        <button class="back-btn" onclick="window.location.href='index.html'" aria-label="Volver">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <h1 id="metric-title">Áreas de Mejora</h1>
+        <div style="width: 44px;"></div> <!-- Spacer -->
+      </header>
+
+      <main class="dashboard details-main">
+         <div class="card insights-card">
+            <ul id="insights-list" class="insights-list">
+                <!-- Populated by JS -->
+                <li><i class="fa-solid fa-spinner fa-spin"></i> Analizando tus datos...</li>
+            </ul>
+         </div>
+      </main>
+    </div>
+    
+    <script type="module" src="insights.js"></script>
+    <script src="theme.js"></script>
+    <style>
+      .insights-card {
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        min-height: 60vh;
+      }
+      .insights-list {
+        list-style: none;
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        text-align: left;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+      }
+      .insights-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        line-height: 1.4;
+        padding: 16px;
+        background: var(--bg-secondary);
+        border-radius: 12px;
+      }
+      .insights-list li i {
+        color: var(--orange);
+        font-size: 1.4rem;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+    </style>
+  </body>
+</html>
