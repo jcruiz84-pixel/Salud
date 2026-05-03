@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Dashboard de Salud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="app-container">
+      
+      <!-- Header Section -->
+      <header class="header">
+        <div class="profile-section">
+          <input type="file" id="profile-upload" accept="image/*" style="display: none;">
+          <img src="https://i.pravatar.cc/150?img=68" alt="Profile" class="profile-pic" id="profile-img" style="cursor: pointer;" title="Cambiar foto de perfil" />
+          <div class="user-info">
+            <h1 class="greeting">Buenos días, Alex</h1>
+            <p class="status"><i class="fa-solid fa-link"></i> Reloj Conectado</p>
+          </div>
+        </div>
+        <button class="settings-btn" id="theme-toggle" aria-label="Cambiar Tema">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard">
+        
+        <!-- Activity Ring Section -->
+        <section class="activity-summary card">
+          <h2>Meta de Actividad</h2>
+          <div class="ring-container">
+             <div class="ring-mockup">
+                <div class="ring-inner">
+                    <span class="ring-value" id="daily-score">85</span>
+                    <span class="ring-label">Puntos</span>
+                </div>
+             </div>
+          </div>
+          <div class="activity-stats">
+              <div class="stat-item">
+                  <div class="stat-color cal"></div>
+                  <span>Calorías</span>
+              </div>
+              <div class="stat-item">
+                  <div class="stat-color min"></div>
+                  <span>Minutos</span>
+              </div>
+               <div class="stat-item">
+                  <div class="stat-color stand"></div>
+                  <span>De pie</span>
+              </div>
+          </div>
+        </section>
+
+        <!-- Metrics Grid -->
+        <div class="metrics-grid">
+          
+          <!-- Heart Rate -->
+          <div class="metric-card hr-card" onclick="window.location.href='details.html?metric=hr'">
+            <div class="metric-header">
+              <i class="fa-solid fa-heart-pulse icon-hr"></i>
+              <h3>Frecuencia Cardíaca</h3>
+              <div class="alert-badge hidden" id="alert-hr" data-metric="hr"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="metric-body">
+              <div class="value-container">
+                <span class="value" id="hr-value">72</span>
+                <span class="unit">lpm</span>
+              </div>
+              <p class="subtitle">Reposo: 64 lpm</p>
+            </div>
+             <div class="sparkline hr-sparkline"></div>
+          </div>
+
+          <!-- Steps -->
+          <div class="metric-card steps-card" onclick="window.location.href='details.html?metric=steps'">
+            <div class="metric-header">
+              <i class="fa-solid fa-shoe-prints icon-steps"></i>
+              <h3>Pasos</h3>
+              <div class="alert-badge hidden" id="alert-steps" data-metric="steps"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="metric-body">
+              <div class="value-container">
+                <span class="value" id="steps-value">8,432</span>
+              </div>
+              <div class="progress-bar-container">
+                  <div class="progress-bar" style="width: 84%"></div>
+              </div>
+              <p class="subtitle">Meta: 10,000</p>
+            </div>
+          </div>
+
+          <!-- Sleep -->
+          <div class="metric-card sleep-card" onclick="window.location.href='details.html?metric=sleep'">
+             <div class="metric-header">
+              <i class="fa-solid fa-moon icon-sleep"></i>
+              <h3>Sueño</h3>
+              <div class="alert-badge hidden" id="alert-sleep" data-metric="sleep"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="metric-body">
+              <div class="value-container">
+                <span class="value" id="sleep-value">7</span><span class="unit">h</span>
+                <span class="value" id="sleep-min">20</span><span class="unit">m</span>
+              </div>
+              <p class="subtitle">Calidad: Excelente</p>
+            </div>
+          </div>
+
+          <!-- Blood Oxygen -->
+          <div class="metric-card spo2-card" onclick="window.location.href='details.html?metric=spo2'">
+             <div class="metric-header">
+              <i class="fa-solid fa-droplet icon-spo2"></i>
+              <h3>Oxígeno en Sangre</h3>
+              <div class="alert-badge hidden" id="alert-spo2" data-metric="spo2"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            </div>
+            <div class="metric-body">
+              <div class="value-container">
+                <span class="value" id="spo2-value">98</span><span class="unit">%</span>
+              </div>
+              <p class="subtitle">Última revisión hace 5m</p>
+            </div>
+          </div>
+
+        </div>
+      </main>
+
+    </div>
+    
+    <!-- Alert Modal -->
+    <div class="modal-overlay hidden" id="alert-modal">
+      <div class="modal-content card">
+        <button class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-body">
+          <i class="fa-solid fa-triangle-exclamation alert-icon-large"></i>
+          <h3 id="alert-title">Atención</h3>
+          <p id="alert-message">Mensaje de alerta.</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+  </body>
+</html>
